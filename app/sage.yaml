@@ -1,0 +1,13 @@
+name: "solar irradiance predictor"
+version: "0.0.1"
+description: "identifies the solar irradiance levels using waggle nodes"
+keywords: "solar irradiance, machine learning"
+authors: "Alex Shen <alexshen2026@u.northwestern.edu> and Seongha Park <seongha.park@anl.gov>"
+collaborators: "Waggle Team <https://wa8.gl>"
+funding: ""
+license: ""
+homepage: ""
+source:
+  architectures:
+    - "linux/amd64"
+    - "linux/arm64"
