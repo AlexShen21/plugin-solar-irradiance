@@ -14,6 +14,8 @@ import argparse
 
 #get_args taken from surface water classifier
 
+
+
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-model', action = 'store', 
@@ -60,6 +62,7 @@ def run(model, sample, plugin):
     print(f"Current Solar Irradiance: {predicted_irradiance}")
 
 
+
     plugin.publish('env.solar.irradiance', predicted_irradiance, timestamp = timestamp)
 
 
@@ -84,6 +87,7 @@ if __name__ == "__main__":
     model = model.to(args.device)
 
     model.eval()
+    print("Hello, This is a test Run")
     while True:
         with Plugin() as plugin, Camera(args.stream) as camera:
             sample = camera.snapshot()
