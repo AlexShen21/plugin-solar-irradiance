@@ -75,7 +75,7 @@ if __name__ == "__main__":
     # model = torchvision.models.load_state_dict(model_dict)
     # model.eval()
 
-    model = torchvision.models.resnet50(pretrained=True)
+    model = torchvision.models.resnet50()
     num_features = model.fc.in_features
     model.fc = torch.nn.Linear(num_features, 1)
 
