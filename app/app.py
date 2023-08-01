@@ -81,11 +81,11 @@ if __name__ == "__main__":
 	num_features = model.fc.in_features
 	model.fc = torch.nn.Linear(num_features, 1)
 
-model_dict = torch.load(args.model, map_location = args.device)
-model.load_state_dict(model_dict)
+	model_dict = torch.load(args.model, map_location = args.device)
+	model.load_state_dict(model_dict)
 
-model = model.to(device)
-model.eval()
+	model = model.to(device)
+	model.eval()
     while True:
         with Plugin() as plugin, Camera(args.stream) as camera:
             sample = camera.snapshot()
