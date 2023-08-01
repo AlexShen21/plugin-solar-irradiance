@@ -74,6 +74,8 @@ if __name__ == "__main__":
     # model_dict = torch.load(args.model, map_location= args.device)
     # model = torchvision.models.load_state_dict(model_dict)
     # model.eval()
+	
+	#NewBlock 
 
     model = torchvision.models.resnet50(weights='IMAGENET1K_V1')
 	num_features = model.fc.in_features
