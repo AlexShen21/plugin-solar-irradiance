@@ -17,7 +17,7 @@ import argparse
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-model', action = 'store', 
-                        dest='model', default='model.pth', 
+                        dest='model', default='model.pt', 
                         help='path to model')
     parser.add_argument('-stream', dest='stream',
                 action='store', default="left_camera",
