@@ -6,7 +6,7 @@ authors: "Alex Shen <alexshen2026@u.northwestern.edu> and Seongha Park <seongha.
 collaborators: "Waggle Team <https://wa8.gl>"
 funding: ""
 license: ""
-homepage: ""
+homepage: "https://github.com/AlexShen21/plugin-solar-irradiance"
 source:
   architectures:
     - "linux/amd64"
