@@ -57,8 +57,7 @@ def run(model, sample, plugin):
 
     predicted_irradiance = output.item()
 
-    if args.debug:
-    	print(f"Current Solar Irradiance: {predicted_irradiance}")
+    print(f"Current Solar Irradiance: {predicted_irradiance}")
 
 
     plugin.publish('env.solar.irradiance', predicted_irradiance, timestamp = timestamp)
