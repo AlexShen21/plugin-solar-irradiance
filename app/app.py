@@ -81,6 +81,7 @@ if __name__ == "__main__":
 
     model_dict = torch.load(args.model, map_location = args.device)
     model.load_state_dict(model_dict)
+    model = model.to(args.device)
 
     model.eval()
     while True:
