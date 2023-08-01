@@ -12,6 +12,7 @@ from PIL import Image
 import argparse
 
 
+#get_args taken from surface water classifier
 
 def get_args():
     parser = argparse.ArgumentParser()
