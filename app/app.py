@@ -82,7 +82,6 @@ if __name__ == "__main__":
     model_dict = torch.load(args.model, map_location = args.device)
     model.load_state_dict(model_dict)
 
-    model = model.to(device)
     model.eval()
     while True:
         with Plugin() as plugin, Camera(args.stream) as camera:
