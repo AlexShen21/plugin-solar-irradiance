@@ -78,8 +78,8 @@ if __name__ == "__main__":
 	#NewBlock 
 
     model = torchvision.models.resnet50(weights='IMAGENET1K_V1')
-	num_features = model.fc.in_features
-	model.fc = torch.nn.Linear(num_features, 1)
+num_features = model.fc.in_features
+model.fc = torch.nn.Linear(num_features, 1)
 
 	model_dict = torch.load(args.model, map_location = args.device)
 	model.load_state_dict(model_dict)
