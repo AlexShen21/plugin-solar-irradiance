@@ -1,9 +1,10 @@
 from waggle.plugin import Plugin
 from waggle.data.vision import Camera
 import time
-
+import torchvision.models
 import torch
 from torchvision import transforms
+import torch.nn
 
 import time
 import cv2
@@ -18,7 +19,7 @@ def get_args():
                         dest='model', default='model.pth', 
                         help='path to model')
     parser.add_argument('-stream', dest='stream',
-                action='store', default="bottom",
+                action='store', default="left_camera",
                 help='ID or name of a stream, e.g. sample')
     parser.add_argument(
         '-debug', dest='debug',
@@ -41,9 +42,14 @@ def run(model, sample, plugin):
     image = transformation(image)
 
 
+    image = image.to(args.device).unsqueeze(0)
+
+
 
     with torch.no_grad():
     	output = model(image)
+
+
 
 
     #inference
@@ -61,16 +67,27 @@ def run(model, sample, plugin):
 if __name__ == "__main__":
     args = get_args()
     if torch.cuda.is_available():
-        args.device = 'cuda'
+        args.device = 'cuda:0'
     else:
         args.device = 'cpu'
-    model = torch.load(args.model, map_location=args.device)
-    model.eval()
+
+    # model_dict = torch.load(args.model, map_location= args.device)
+    # model = torchvision.models.load_state_dict(model_dict)
+    # model.eval()
+
+    model = torchvision.models.resnet50(weights='IMAGENET1K_V1')
+	num_features = model.fc.in_features
+	model.fc = torch.nn.Linear(num_features, 1)
+
+	model_dict = torch.load(args.model, map_location = args.device)
+	model.load_state_dict(model_dict)
+
+	model = model.to(device)
+	model.eval()
     while True:
         with Plugin() as plugin, Camera(args.stream) as camera:
             sample = camera.snapshot()
             run(model,sample, plugin)
             if not args.continuous:
-            	break
             	exit(0)
 
